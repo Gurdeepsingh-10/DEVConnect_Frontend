@@ -169,14 +169,6 @@ export default function Sidebar({ mobileOpen, onClose }) {
           <div style={{ padding: '12px', borderTop: '1px solid var(--border-light)' }}>
             <button
               className="nav-link"
-              style={{ width: '100%', border: 'none', background: 'none', cursor: 'pointer' }}
-              onClick={toggleTheme}
-            >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-              <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
-            </button>
-            <button
-              className="nav-link"
               style={{ width: '100%', border: 'none', background: 'none', cursor: 'pointer', color: 'var(--accent-rose)' }}
               onClick={handleLogout}
             >
