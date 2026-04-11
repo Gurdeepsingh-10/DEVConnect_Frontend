@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { leaderboardService, followService } from '../services'
-import { MOCK_LEADERBOARD_USERS } from '../data/mockData'
+
 import { Link } from 'react-router-dom'
 import { getInitials, formatNumber } from '../utils'
 import { gsap } from 'gsap'
@@ -118,11 +118,11 @@ export default function LeaderboardPage() {
         ? leaderboardService.getGlobal
         : leaderboardService.getNetwork
       const { data } = await fn()
-      const arr = Array.isArray(data) && data.length > 0 ? data : MOCK_LEADERBOARD_USERS
+      const arr = Array.isArray(data) ? data : []
       setUsers(sortUsers(arr, metric))
       setLastUpdated(new Date())
     } catch {
-      setUsers(sortUsers(MOCK_LEADERBOARD_USERS, metric))
+      setUsers([])
       setLastUpdated(new Date())
     } finally {
       setLoading(false)
