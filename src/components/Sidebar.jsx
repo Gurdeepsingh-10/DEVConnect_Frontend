@@ -11,8 +11,6 @@ import LiveSessionsPanel from './LiveSessionsPanel'
 
 const NAV_LINKS = [
   { path: '/feed', label: 'Feed', icon: Home },
-const NAV_LINKS = [
-  { path: '/feed', label: 'Feed', icon: Home },
   { path: '/trending', label: 'Trending', icon: TrendingUp },
   { path: '/search', label: 'Search', icon: Search },
   { path: '/leaderboard', label: 'Leaderboard', icon: Trophy },
