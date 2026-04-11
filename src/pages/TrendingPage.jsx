@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { postService } from '../services'
-import { MOCK_POSTS } from '../data/mockData'
+
 import PostCard from '../components/PostCard'
 import { TrendingUp, Flame } from 'lucide-react'
 import { gsap } from 'gsap'
@@ -26,9 +26,9 @@ export default function TrendingPage() {
     setLoading(true)
     try {
       const { data } = await postService.getTrending()
-      setPosts(Array.isArray(data) ? data : MOCK_POSTS)
+      setPosts(Array.isArray(data) ? data : [])
     } catch {
-      setPosts(MOCK_POSTS)
+      setPosts([])
     } finally {
       setLoading(false)
     }
