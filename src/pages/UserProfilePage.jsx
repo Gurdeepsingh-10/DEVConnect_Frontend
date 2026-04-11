@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { userService, followService, aiService } from '../services'
-import {
-  MOCK_CODING_STATS, MOCK_DNA, MOCK_DEV_STATS,
-  MOCK_LEADERBOARD_USERS, MOCK_POSTS, ARCHETYPES, PLATFORMS
-} from '../data/mockData'
+import { ARCHETYPES, PLATFORMS } from '../data/constants'
 import { getInitials, formatNumber, formatDate, getContribColor } from '../utils'
 import { useAuth } from '../context/AuthContext'
 import { useTheme } from '../context/ThemeContext'
@@ -255,7 +252,12 @@ export default function UserProfilePage() {
   const pollRef = useRef(null)
   const isOwnProfile = currentUser?.id === userID
 
-  const coding = MOCK_CODING_STATS
+  const coding = stats?.coding || {
+    leetcode: { easy: 0, medium: 0, hard: 0, contestRating: 0, ranking: 0, tagProgress: [], recentSubmissions: [] },
+    codeforces: { rating: 0, rank: 'Unrated', ratingHistory: [], problemsByRating: [] },
+    codechef: { rating: 0, stars: 0, ratingHistory: [] },
+    github: { totalCommits: 0, publicRepos: 0, stars: 0, followers: 0, contributionCalendar: [], monthlyCommits: [], commitsByDay: [], topLanguages: [] }
+  }
 
   const fetchAll = async () => {
     try {
@@ -280,7 +282,7 @@ export default function UserProfilePage() {
         })
       }
       if (statsRes.status === 'fulfilled') setStats(statsRes.value.data)
-      else setStats(prev => prev || MOCK_DEV_STATS)
+      else setStats(prev => prev || {})
       if (dnaRes.status === 'fulfilled') setDna(dnaRes.value.data)
       else setDna(prev => prev)
       if (postsRes.status === 'fulfilled') setPosts(postsRes.value.data || [])
@@ -333,7 +335,7 @@ export default function UserProfilePage() {
       setDna(data)
       toast.success('DNA analyzed! 🧬')
     } catch {
-      setDna(MOCK_DNA)
+      setDna(prev => prev || {})
       toast.success('DNA analyzed! 🧬')
     } finally {
       setAnalyzingDNA(false)
