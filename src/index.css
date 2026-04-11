@@ -1015,21 +1015,6 @@ img { max-width: 100%; display: block; }
   .post-card { padding: 16px; }
   .profile-hero { padding: 24px 16px 20px !important; }
 
-  /* Profile hero stacks vertically on mobile */
-  .profile-hero-inner {
-    flex-direction: column !important;
-    align-items: center !important;
-    text-align: center;
-  }
-  .profile-hero-inner .profile-stats {
-    align-items: center !important;
-    margin-left: 0 !important;
-    width: 100%;
-  }
-  .profile-hero-inner .profile-stats > div {
-    justify-content: center;
-  }
-  
   .responsive-grid-2 {
     grid-template-columns: 1fr !important;
   }
