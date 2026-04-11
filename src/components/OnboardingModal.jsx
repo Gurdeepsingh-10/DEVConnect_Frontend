@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { platformService, userService } from '../services'
-import { PLATFORMS } from '../data/mockData'
+import { PLATFORMS } from '../data/constants'
 import { useAuth } from '../context/AuthContext'
 import toast from 'react-hot-toast'
 import { Check, ChevronRight, ArrowLeft, X, Loader2, Link2, User, Code2, Eye, EyeOff } from 'lucide-react'
