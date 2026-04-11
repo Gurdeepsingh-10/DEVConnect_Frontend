@@ -64,16 +64,7 @@ export default function Header({ onMenuClick }) {
             {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
 
-          {/* Bell - mobile only, inside top bar */}
-          <Link to="/notifications" id="mobile-bell" className="btn btn-ghost btn-icon" style={{ position: 'relative', display: 'none' }}>
-            <Bell size={18} />
-            <span style={{
-              position: 'absolute', top: 4, right: 4,
-              width: 8, height: 8, borderRadius: '50%',
-              background: 'var(--accent-primary)',
-              border: '2px solid var(--bg-primary)',
-            }} />
-          </Link>
+
 
           {user ? (
             <Link to={`/users/${user.id}`} style={{ textDecoration: 'none' }}>
@@ -109,7 +100,6 @@ export default function Header({ onMenuClick }) {
       <style>{`
         @media (max-width: 1024px) {
           #menu-btn { display: flex !important; }
-          #mobile-bell { display: flex !important; }
           #sidebar-close { display: flex !important; }
           #mobile-sidebar-panels { display: block !important; }
         }
