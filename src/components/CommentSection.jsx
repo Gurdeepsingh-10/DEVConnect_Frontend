@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext'
 import { formatRelativeTime, getInitials } from '../utils'
 import { Trash2, Send } from 'lucide-react'
 import toast from 'react-hot-toast'
-import { MOCK_POSTS } from '../data/mockData'
+
 
 export default function CommentSection({ postId }) {
   const { user } = useAuth()
@@ -23,11 +23,7 @@ export default function CommentSection({ postId }) {
       const { data } = await commentService.getComments(postId)
       setComments(Array.isArray(data) ? data : [])
     } catch {
-      // Use mock data
-      setComments([
-        { id: 1, user_id: 'u1', user: { name: 'Priya Nair', initials: 'PN' }, content: 'Great insight! I had the same experience with rolling array DP.', created_at: new Date(Date.now() - 3600000).toISOString() },
-        { id: 2, user_id: 'u2', user: { name: 'Arjun Sharma', initials: 'AS' }, content: 'This is exactly what I needed today 🔥', created_at: new Date(Date.now() - 7200000).toISOString() },
-      ])
+      setComments([])
     } finally {
       setLoading(false)
     }
