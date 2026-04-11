@@ -60,7 +60,15 @@ export default function PostCard({ post, onDelete, onEdit }) {
     }
   }
 
-  const displayUser = post.user || { name: 'Developer', initials: 'DV' }
+  // Build a sensible display name from user object or fallback to user_id prefix
+  const displayUser = (() => {
+    const u = post.user || {}
+    const name = u.name || ''
+    if (name && name !== 'Developer') return u
+    // Fall back: short user ID as identifier
+    const shortId = post.user_id ? `User ${String(post.user_id).slice(0, 6)}` : 'Developer'
+    return { ...u, name: shortId, initials: shortId.slice(0, 2).toUpperCase() }
+  })()
 
   return (
     <article ref={cardRef} className="post-card" style={{ opacity: 0 }}>

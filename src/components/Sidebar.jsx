@@ -46,7 +46,7 @@ export default function Sidebar({ mobileOpen, onClose }) {
         className={`sidebar${mobileOpen ? ' open' : ''}`}
         style={{ zIndex: 'var(--z-sticky)' }}
       >
-        <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', height: '100%' }}>
+        <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', height: '100%', overflowY: 'auto', overflowX: 'hidden' }}>
 
           {/* Brand */}
           <div style={{
@@ -67,7 +67,7 @@ export default function Sidebar({ mobileOpen, onClose }) {
                 DevConnect
               </span>
             </Link>
-            <button className="btn btn-ghost btn-icon" onClick={onClose} style={{ display: 'none' }} id="sidebar-close">
+            <button className="btn btn-ghost btn-icon" onClick={onClose} id="sidebar-close" style={{ display: 'none' }}>
               <X size={18} />
             </button>
           </div>
@@ -149,8 +149,8 @@ export default function Sidebar({ mobileOpen, onClose }) {
             </Link>
           </nav>
 
-          {/* Mobile extra panels */}
-          <div className="show-on-mobile" style={{ padding: '16px 12px 0' }}>
+          {/* Mobile extra panels - Live & Trending shown inside collapsible sidebar */}
+          <div id="mobile-sidebar-panels" style={{ padding: '16px 12px 0', display: 'none' }}>
             <div style={{ marginBottom: 16 }}>
               <LiveSessionsPanel />
             </div>

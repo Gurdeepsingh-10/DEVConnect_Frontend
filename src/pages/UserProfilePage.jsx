@@ -383,7 +383,7 @@ export default function UserProfilePage() {
           pointerEvents: 'none',
         }} />
 
-        <div className="responsive-hero-info" style={{ display: 'flex', alignItems: 'flex-start', gap: 20, flexWrap: 'wrap' }}>
+        <div className="profile-hero-inner" style={{ display: 'flex', alignItems: 'flex-start', gap: 20, flexWrap: 'wrap' }}>
           {/* Avatar */}
           <div style={{ position: 'relative', flexShrink: 0 }}>
             {profile?.avatar_url && !avatarError ? (
@@ -440,7 +440,7 @@ export default function UserProfilePage() {
           </div>
 
           {/* Stats + Actions */}
-          <div className="responsive-hero-stats" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 14 }}>
+          <div className="profile-stats" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 14, marginLeft: 'auto' }}>
             {/* Instagram-style follower / following counts + XP */}
             <div style={{ display: 'flex', gap: 20, fontSize: '0.78rem' }}>
               <div style={{ textAlign: 'center' }}>
