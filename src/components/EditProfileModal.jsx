@@ -3,7 +3,7 @@ import { userService } from '../services'
 import { useAuth } from '../context/AuthContext'
 import { X, Save, Plus } from 'lucide-react'
 import toast from 'react-hot-toast'
-import { SKILL_SUGGESTIONS } from '../data/mockData'
+import { SKILL_SUGGESTIONS } from '../data/constants'
 
 export default function EditProfileModal({ profile, onClose, onSave }) {
   const { setUser } = useAuth()
