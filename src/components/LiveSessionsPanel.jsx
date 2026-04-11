@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { sessionService } from '../services'
-import { MOCK_LIVE_SESSIONS } from '../data/mockData'
+
 import { formatRelativeTime } from '../utils'
 import { useAuth } from '../context/AuthContext'
 import toast from 'react-hot-toast'
@@ -25,9 +25,9 @@ export default function LiveSessionsPanel() {
   const fetchSessions = async () => {
     try {
       const { data } = await sessionService.getLiveSessions()
-      setSessions(Array.isArray(data) && data.length > 0 ? data : MOCK_LIVE_SESSIONS)
+      setSessions(Array.isArray(data) ? data : [])
     } catch {
-      setSessions(MOCK_LIVE_SESSIONS)
+      setSessions([])
     } finally {
       setLoading(false)
     }
