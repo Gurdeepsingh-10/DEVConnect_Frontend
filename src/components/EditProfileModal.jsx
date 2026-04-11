@@ -15,6 +15,11 @@ export default function EditProfileModal({ profile, onClose, onSave }) {
     return raw.split(',').map(s => s.trim()).filter(Boolean)
   }
 
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => document.body.style.overflow = 'unset'
+  }, [])
+
   const [form, setForm] = useState({
     name: profile?.name || '',
     bio: profile?.bio || '',
