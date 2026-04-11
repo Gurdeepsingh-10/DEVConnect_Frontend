@@ -11,10 +11,11 @@ import LiveSessionsPanel from './LiveSessionsPanel'
 
 const NAV_LINKS = [
   { path: '/feed', label: 'Feed', icon: Home },
+const NAV_LINKS = [
+  { path: '/feed', label: 'Feed', icon: Home },
   { path: '/trending', label: 'Trending', icon: TrendingUp },
   { path: '/search', label: 'Search', icon: Search },
   { path: '/leaderboard', label: 'Leaderboard', icon: Trophy },
-  { path: '/notifications', label: 'Notifications', icon: Bell },
 ]
 
 export default function Sidebar({ mobileOpen, onClose }) {
@@ -119,14 +120,6 @@ export default function Sidebar({ mobileOpen, onClose }) {
               >
                 <Icon size={18} />
                 <span>{label}</span>
-                {label === 'Notifications' && (
-                  <span style={{
-                    marginLeft: 'auto', minWidth: 20, height: 20,
-                    borderRadius: 99, background: 'var(--accent-primary)',
-                    color: '#fff', fontSize: '0.65rem', fontWeight: 700,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 5px',
-                  }}>2</span>
-                )}
               </Link>
             ))}
 
