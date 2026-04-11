@@ -382,110 +382,123 @@ export default function UserProfilePage() {
       )}
 
       {/* ── Hero Header ── */}
-      <div ref={headerRef} className="glass-card" style={{ padding: '28px 28px 20px', marginBottom: 20, position: 'relative', overflow: 'hidden' }}>
+      <div ref={headerRef} className="glass-card" style={{ padding: '32px', marginBottom: 20, position: 'relative', overflow: 'hidden' }}>
         {/* Ambient glow */}
         <div style={{
-          position: 'absolute', top: -80, right: -80,
-          width: 300, height: 300, borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(61,122,111,0.12) 0%, transparent 70%)',
+          position: 'absolute', top: -100, left: -50,
+          width: 400, height: 400, borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(61,122,111,0.08) 0%, transparent 60%)',
           pointerEvents: 'none',
         }} />
 
-        <div className="profile-hero-inner" style={{ display: 'flex', alignItems: 'flex-start', gap: 20, flexWrap: 'wrap' }}>
-          {/* Avatar */}
-          <div style={{ position: 'relative', flexShrink: 0 }}>
-            {profile?.avatar_url && !avatarError ? (
-              <img
-                src={profile.avatar_url}
-                alt={profile.name}
-                style={{ width: 88, height: 88, borderRadius: '50%', border: '3px solid var(--accent-primary)', objectFit: 'cover' }}
-                onError={() => setAvatarError(true)}
-              />
-            ) : (
-              <div style={{
-                width: 88, height: 88, borderRadius: '50%',
-                background: 'linear-gradient(135deg, var(--triton-2), var(--accent-gold))',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: 'Space Grotesk', fontWeight: 800, fontSize: '2rem', color: '#fff',
-                border: '3px solid var(--accent-primary)',
-              }}>{getInitials(profile?.name || '')}</div>
-            )}
-          </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 32, alignItems: 'center', position: 'relative', zIndex: 1 }}>
+          {/* ── LEFT: Identity ── */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'center', flex: '1 1 400px' }}>
+            {/* Avatar */}
+            <div style={{ position: 'relative', flexShrink: 0 }}>
+              {profile?.avatar_url && !avatarError ? (
+                <img
+                  src={profile.avatar_url}
+                  alt={profile.name}
+                  style={{ width: 110, height: 110, borderRadius: '50%', border: '4px solid var(--border-light)', objectFit: 'cover', boxShadow: 'var(--shadow-md)' }}
+                  onError={() => setAvatarError(true)}
+                />
+              ) : (
+                <div style={{
+                  width: 110, height: 110, borderRadius: '50%',
+                  background: 'linear-gradient(135deg, var(--triton-2), var(--accent-gold))',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontFamily: 'Space Grotesk', fontWeight: 800, fontSize: '2.5rem', color: '#fff',
+                  border: '4px solid var(--border-light)', boxShadow: 'var(--shadow-md)'
+                }}>{getInitials(profile?.name || '')}</div>
+              )}
+            </div>
 
-          {/* Info */}
-          <div style={{ flex: 1, minWidth: 200 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginBottom: 4 }}>
-              <h1 style={{ fontFamily: 'Space Grotesk', fontWeight: 800, fontSize: '1.6rem', letterSpacing: '-0.02em', margin: 0 }}>
-                {profile?.name || 'Developer'}
-              </h1>
-              {dna?.primary_archetype && (
-                <span style={{ fontSize: '0.72rem', padding: '3px 10px', borderRadius: 99, background: 'rgba(61,122,111,0.15)', color: 'var(--accent-primary)', fontWeight: 700, border: '1px solid var(--border-accent)' }}>
-                  {ARCHETYPES[dna.primary_archetype]?.emoji} {dna.primary_archetype}
-                </span>
-              )}
-            </div>
-            {profile?.bio && (
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, marginBottom: 10, maxWidth: 500 }}>
-                {profile.bio}
-              </p>
-            )}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, fontSize: '0.78rem', color: 'var(--text-muted)', marginBottom: 12 }}>
-              {profile?.location && <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><MapPin size={12} />{profile.location}</span>}
-              {profile?.github && (
-                <a href={`https://github.com/${profile.github}`} target="_blank" rel="noopener noreferrer"
-                  style={{ display: 'flex', alignItems: 'center', gap: 4, color: 'var(--accent-primary)', textDecoration: 'none' }}>
-                  <Github size={12} />{profile.github}
-                </a>
-              )}
-            </div>
-            {skills.length > 0 && (
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                {skills.slice(0, 8).map(s => (
-                  <span key={s} className="skill-tag" style={{ fontSize: '0.72rem' }}>{s}</span>
-                ))}
+            {/* Info Container */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flex: '1 1 250px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                <h1 style={{ fontFamily: 'Space Grotesk', fontWeight: 800, fontSize: '1.85rem', letterSpacing: '-0.02em', margin: 0, color: 'var(--text-primary)' }}>
+                  {profile?.name || 'Developer'}
+                </h1>
+                {dna?.primary_archetype && (
+                  <span style={{ fontSize: '0.75rem', padding: '4px 12px', borderRadius: 99, background: 'rgba(61,122,111,0.15)', color: 'var(--accent-primary)', fontWeight: 700, border: '1px solid var(--border-accent)' }}>
+                    {ARCHETYPES[dna.primary_archetype]?.emoji} {dna.primary_archetype}
+                  </span>
+                )}
               </div>
-            )}
+              
+              {profile?.bio && (
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.6, margin: 0, maxWidth: 500 }}>
+                  {profile.bio}
+                </p>
+              )}
+              
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, fontSize: '0.82rem', color: 'var(--text-muted)' }}>
+                {profile?.location && <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><MapPin size={14} />{profile.location}</span>}
+                {profile?.github && (
+                  <a href={`https://github.com/${profile.github}`} target="_blank" rel="noopener noreferrer"
+                    style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 500 }}>
+                    <Github size={14} />{profile.github}
+                  </a>
+                )}
+              </div>
+              
+              {skills.length > 0 && (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 4 }}>
+                  {skills.slice(0, 8).map(s => (
+                    <span key={s} className="skill-tag" style={{ fontSize: '0.75rem', background: 'var(--bg-overlay)', border: '1px solid var(--border-light)' }}>{s}</span>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Stats + Actions */}
-          <div className="profile-stats" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 14, marginLeft: 'auto' }}>
-            {/* Instagram-style follower / following counts + XP */}
-            <div style={{ display: 'flex', gap: 20, fontSize: '0.78rem' }}>
+          {/* ── RIGHT: Stats Box ── */}
+          <div style={{ 
+            display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20, 
+            padding: '24px 32px', background: 'var(--bg-overlay)', 
+            borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-light)',
+            flex: '0 1 auto', minWidth: 320, margin: '0 auto' 
+          }}>
+            {/* Top Stats Row */}
+            <div style={{ display: 'flex', gap: 32, width: '100%', justifyContent: 'space-between', fontSize: '0.8rem' }}>
               <div style={{ textAlign: 'center' }}>
-                <div style={{ fontFamily: 'Space Grotesk', fontWeight: 800, fontSize: '1.25rem', color: 'var(--accent-gold)' }}>{formatNumber(stats?.total_xp || 0)}</div>
-                <div style={{ color: 'var(--text-muted)' }}>XP</div>
+                <div style={{ fontFamily: 'Space Grotesk', fontWeight: 800, fontSize: '1.4rem', color: 'var(--accent-gold)' }}>{formatNumber(stats?.total_xp || 0)}</div>
+                <div style={{ color: 'var(--text-muted)', marginTop: 4, fontWeight: 500 }}>XP</div>
               </div>
               <button
                 onClick={() => setNetworkModal('followers')}
                 style={{ textAlign: 'center', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
               >
-                <div style={{ fontFamily: 'Space Grotesk', fontWeight: 800, fontSize: '1.25rem', color: 'var(--text-primary)' }}>{followers.length}</div>
-                <div style={{ color: 'var(--text-muted)', fontSize: '0.78rem' }}>Followers</div>
+                <div style={{ fontFamily: 'Space Grotesk', fontWeight: 800, fontSize: '1.4rem', color: 'var(--text-primary)' }}>{followers.length}</div>
+                <div style={{ color: 'var(--text-muted)', marginTop: 4, fontWeight: 500 }}>Followers</div>
               </button>
               <button
                 onClick={() => setNetworkModal('following')}
                 style={{ textAlign: 'center', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
               >
-                <div style={{ fontFamily: 'Space Grotesk', fontWeight: 800, fontSize: '1.25rem', color: 'var(--text-primary)' }}>{followingUsers.length}</div>
-                <div style={{ color: 'var(--text-muted)', fontSize: '0.78rem' }}>Following</div>
+                <div style={{ fontFamily: 'Space Grotesk', fontWeight: 800, fontSize: '1.4rem', color: 'var(--text-primary)' }}>{followingUsers.length}</div>
+                <div style={{ color: 'var(--text-muted)', marginTop: 4, fontWeight: 500 }}>Following</div>
               </button>
               <div style={{ textAlign: 'center' }}>
-                <div style={{ fontFamily: 'Space Grotesk', fontWeight: 800, fontSize: '1.25rem', color: 'var(--accent-primary)' }}>{stats?.current_streak || 0}🔥</div>
-                <div style={{ color: 'var(--text-muted)' }}>Streak</div>
+                <div style={{ fontFamily: 'Space Grotesk', fontWeight: 800, fontSize: '1.4rem', color: 'var(--accent-primary)' }}>{stats?.current_streak || 0}🔥</div>
+                <div style={{ color: 'var(--text-muted)', marginTop: 4, fontWeight: 500 }}>Streak</div>
               </div>
             </div>
-            {/* Action buttons */}
-            <div style={{ display: 'flex', gap: 8 }}>
+            
+            {/* Action Buttons */}
+            <div style={{ width: '100%' }}>
               {isOwnProfile ? (
-                <button className="btn btn-secondary btn-sm" onClick={() => setShowEditModal(true)} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <Edit3 size={13} /> Edit Profile
+                <button className="btn btn-secondary" onClick={() => setShowEditModal(true)} style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '10px 16px' }}>
+                  <Edit3 size={16} /> Edit Profile
                 </button>
               ) : (
                 <button
-                  className={`btn btn-sm ${isFollowing ? 'btn-secondary' : 'btn-primary'}`}
+                  className={`btn ${isFollowing ? 'btn-secondary' : 'btn-primary'}`}
                   onClick={handleFollow}
+                  style={{ width: '100%', padding: '10px 16px' }}
                 >
-                  {isFollowing ? 'Following ✓' : '+ Follow'}
+                  {isFollowing ? 'Following ✓' : '+ Follow Developer'}
                 </button>
               )}
             </div>
