@@ -173,6 +173,11 @@ function DNAVisualizer({ dna }) {
 
 // ─── Followers / Following Modal ─────────────────────────────────────────────
 function NetworkModal({ title, users, onClose }) {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => document.body.style.overflow = 'unset'
+  }, [])
+
   const loading = false
   const profiles = users || []
 
