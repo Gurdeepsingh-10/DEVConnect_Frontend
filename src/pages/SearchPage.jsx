@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { useLocation, useNavigate, Link } from 'react-router-dom'
 import { userService, followService } from '../services'
-import { SKILL_SUGGESTIONS } from '../data/mockData'
+import { SKILL_SUGGESTIONS } from '../data/constants'
 import { useAuth } from '../context/AuthContext'
 import { getInitials, debounce } from '../utils'
 import { Search, MapPin, Users, X, Zap, Code2 } from 'lucide-react'
