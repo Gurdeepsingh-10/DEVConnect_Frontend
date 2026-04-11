@@ -52,7 +52,7 @@ function AnimatedPage({ children }) {
     if (ref.current) {
       gsap.fromTo(ref.current,
         { opacity: 0, y: 18 },
-        { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' }
+        { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out', clearProps: 'transform' }
       )
     }
   }, [location.pathname])
