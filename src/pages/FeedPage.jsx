@@ -6,7 +6,7 @@ import PostForm from '../components/PostForm'
 import EditPostModal from '../components/EditPostModal'
 import LiveSessionsPanel from '../components/LiveSessionsPanel'
 import { TrendingUp, Flame, Rss } from 'lucide-react'
-import { MOCK_POSTS } from '../data/mockData'
+
 import { gsap } from 'gsap'
 import toast from 'react-hot-toast'
 
@@ -65,12 +65,12 @@ export default function FeedPage() {
       const arr = Array.isArray(data) ? data : []
       // Attach mock user info
       const enriched = arr.map(p => ({ ...p, user: p.user || { name: 'Developer', initials: 'DV' } }))
-      if (pg === 1) setPosts(enriched.length ? enriched : MOCK_POSTS)
+      if (pg === 1) setPosts(enriched)
       else setPosts(prev => [...prev, ...enriched])
       setHasMore(arr.length === 10)
       setPage(pg)
     } catch {
-      if (pg === 1) setPosts(MOCK_POSTS)
+      if (pg === 1) setPosts([])
       setHasMore(false)
     } finally {
       setLoading(false)
