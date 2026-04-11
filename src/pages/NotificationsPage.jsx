@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { notificationService } from '../services'
-import { MOCK_NOTIFICATIONS } from '../data/mockData'
+
 import { formatRelativeTime } from '../utils'
 import { Heart, MessageCircle, UserPlus, Bell } from 'lucide-react'
 import { gsap } from 'gsap'
@@ -35,7 +35,7 @@ export default function NotificationsPage() {
       if (!data) setNotifs([])
       else setNotifs(Array.isArray(data) ? data : [])
     } catch {
-      setNotifs(MOCK_NOTIFICATIONS)
+      setNotifs([])
     } finally {
       setLoading(false)
     }
