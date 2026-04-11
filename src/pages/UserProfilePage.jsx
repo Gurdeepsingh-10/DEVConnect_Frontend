@@ -196,7 +196,9 @@ function NetworkModal({ title, users, onClose }) {
               No users yet
             </div>
           ) : (
-            profiles.map(u => (
+            profiles.map(u => {
+              const displayName = u.name || (u.id ? `User ${String(u.id).slice(0, 6)}` : 'Unknown')
+              return (
               <Link
                 key={u.id}
                 to={`/users/${u.id}`}
@@ -206,18 +208,19 @@ function NetworkModal({ title, users, onClose }) {
                 onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
               >
                 {u.avatar_url ? (
-                  <img src={u.avatar_url} alt={u.name || 'User'} style={{ width: 40, height: 40, borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--border-accent)', flexShrink: 0 }} />
+                  <img src={u.avatar_url} alt={displayName} style={{ width: 40, height: 40, borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--border-accent)', flexShrink: 0 }} />
                 ) : (
                   <div className="avatar-placeholder" style={{ width: 40, height: 40, borderRadius: '50%', fontSize: '0.72rem', flexShrink: 0 }}>
-                    {getInitials(u.name || 'User')}
+                    {getInitials(displayName)}
                   </div>
                 )}
                 <div>
-                  <div style={{ fontWeight: 600, fontSize: '0.9rem', color: 'var(--text-primary)' }}>{u.name || 'Anonymous User'}</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{u.location || u.bio?.slice(0, 40) || ''}</div>
+                  <div style={{ fontWeight: 600, fontSize: '0.9rem', color: 'var(--text-primary)' }}>{displayName}</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{u.location || u.bio?.slice(0, 40) || `@${String(u.id).slice(0, 8)}`}</div>
                 </div>
               </Link>
-            ))
+              )
+            })
           )}
         </div>
       </div>
