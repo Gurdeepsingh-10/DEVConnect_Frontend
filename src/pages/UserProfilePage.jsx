@@ -496,12 +496,9 @@ export default function UserProfilePage() {
       {/* ── Quick Stats Row ── */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: 12, marginBottom: 20 }}>
         {[
-          { label: 'LeetCode', value: stats?.leetcode_solved || coding.leetcode.solved, icon: Code2, color: '#FFA116' },
-          { label: 'Codeforces', value: stats?.codeforces_rating || coding.codeforces.rating, icon: Zap, color: '#1194F6' },
-          { label: 'Commits', value: stats?.github_commits || coding.github.totalCommits, icon: GitBranch, color: '#26de81' },
-          { label: 'Collab Score', value: stats?.collaboration_score || 74, icon: Users, color: 'var(--accent-primary)' },
-          { label: 'Rep Score', value: `${stats?.reputation_score || 8.6}/10`, icon: Star, color: 'var(--accent-gold)' },
-          { label: 'Articles', value: coding.medium.articles, icon: FileText, color: '#000' },
+          ...(profile?.github ? [{ label: 'Commits', value: stats?.github_commits || 0, icon: GitBranch, color: '#26de81' }] : []),
+          { label: 'Collab Score', value: stats?.collaboration_score || 0, icon: Users, color: 'var(--accent-primary)' },
+          { label: 'Rep Score', value: `${stats?.reputation_score || 0}/10`, icon: Star, color: 'var(--accent-gold)' },
         ].map((s, i) => (
           <div key={i} className="glass-card" style={{ padding: '14px 16px', textAlign: 'center' }}>
             <s.icon size={18} style={{ color: s.color, margin: '0 auto 6px' }} />
